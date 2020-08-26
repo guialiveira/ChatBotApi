@@ -28,6 +28,7 @@ namespace ChatBot
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddCors();
 
             services.AddDbContext<ChatBotContext>(options =>
                     options.UseMySql(Configuration.GetConnectionString("ChatBotContext"),
@@ -51,6 +52,8 @@ namespace ChatBot
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors(option => option.AllowAnyOrigin()); //Abilita teste da api na mesma origem (local)
 
             app.UseEndpoints(endpoints =>
             {

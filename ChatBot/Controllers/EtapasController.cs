@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ChatBot.Data;
 using ChatBot.Model;
+using Microsoft.AspNetCore.Cors;
 
 namespace ChatBot.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors]
     public class EtapasController : ControllerBase
     {
         private readonly ChatBotContext _context;
