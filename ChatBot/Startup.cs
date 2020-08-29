@@ -28,15 +28,23 @@ namespace ChatBot
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddCors();
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
 
             services.AddDbContext<ChatBotContext>(options =>
                     options.UseMySql(Configuration.GetConnectionString("ChatBotContext"),
 
                      builder =>
                         builder.MigrationsAssembly("ChatBot")));
-                    
-                    
+
+            services.AddControllers()
+                .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling =
+                Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,7 +61,7 @@ namespace ChatBot
 
             app.UseAuthorization();
 
-            app.UseCors(option => option.AllowAnyOrigin()); //Abilita teste da api na mesma origem (local)
+            app.UseCors("MyPolicy"); //Abilita teste da api na mesma origem (local)
 
             app.UseEndpoints(endpoints =>
             {

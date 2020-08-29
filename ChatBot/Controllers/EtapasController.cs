@@ -13,28 +13,28 @@ namespace ChatBot.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [EnableCors]
     public class EtapasController : ControllerBase
     {
         private readonly ChatBotContext _context;
 
         public EtapasController(ChatBotContext context)
         {
-            _context = context;
+            _context = context;            
         }
 
-        // GET: api/Etapas
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Etapa>>> GetEtapa()
         {
-            return await _context.Etapa.ToListAsync();
+            return await _context.Etapa.Include(obj => obj.Respostas).ToListAsync();
         }
 
         // GET: api/Etapas/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Etapa>> GetEtapa(int id)
         {
-            var etapa = await _context.Etapa.FindAsync(id);
+            //var etapa = await _context.Etapa.FindAsync(id);
+
+            var etapa = await _context.Etapa.Include(obj => obj.Respostas).FirstOrDefaultAsync(obj => obj.Id == id); //include faz um iner join com resposta
 
             if (etapa == null)
             {
@@ -87,6 +87,7 @@ namespace ChatBot.Controllers
 
             return CreatedAtAction("GetEtapa", new { id = etapa.Id }, etapa);
         }
+
 
         // DELETE: api/Etapas/5
         [HttpDelete("{id}")]

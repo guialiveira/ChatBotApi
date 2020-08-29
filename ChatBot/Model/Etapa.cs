@@ -28,9 +28,9 @@ namespace ChatBot.Model
 
 
         //adciona Resposta na Etapa
-        public void AddResposta(Resposta seller)
+        public void AddResposta(Resposta resposta)
         {
-            Respostas.Add(seller);
+            Respostas.Add(resposta);
         }
     }
 }
