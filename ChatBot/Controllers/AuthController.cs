@@ -68,7 +68,7 @@ namespace ChatBot.Controllers
 
         private async Task<string> GerarJwt(string email)
         {
-            var user = await _userManager.FindByEmailAsync(email);
+            await _userManager.FindByEmailAsync(email);
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
