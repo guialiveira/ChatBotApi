@@ -3,14 +3,16 @@ using System;
 using ChatBot.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ChatBot.Migrations
 {
     [DbContext(typeof(ChatBotContext))]
-    partial class ChatBotContextModelSnapshot : ModelSnapshot
+    [Migration("20200831043214_identity")]
+    partial class identity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -24,7 +24,6 @@ namespace ChatBot.Model
             Id = id;
             Legenda = legenda;
             ProxEtapaId = proxEtapaId;
-            Etapa = etapa;
         }
     }
 }

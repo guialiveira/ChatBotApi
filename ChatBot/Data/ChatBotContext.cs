@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using ChatBot.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace ChatBot.Data
 {
-    public class ChatBotContext : DbContext
+    public class ChatBotContext : IdentityDbContext
     {
         public ChatBotContext (DbContextOptions<ChatBotContext> options)
             : base(options)

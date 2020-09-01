@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using ChatBot.Data;
 using ChatBot.Model;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ChatBot.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     [EnableCors]
