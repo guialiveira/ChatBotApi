@@ -12,9 +12,9 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace ChatBot.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class EtapasController : ControllerBase
     {
         private readonly ChatBotContext _context;
